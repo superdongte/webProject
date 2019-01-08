@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.project.dao.ProjectSpmsDao">
+	
+	<select id="selectByAllList" resultType="ProjectSpms">
+		select *
+		from projectSpms
+	</select>
+	
+	<select id="selectLastNo" resultType="int">
+		select last_insert_id()
+	</select>
+	
+	<insert id="insertProject" parameterType="ProjectSpms">
+		insert into projectSpms
+		(project_no, title, pro_content, pro_start, pro_end, pro_state)
+		values(#{project_no}, #{title},#{pro_content},#{pro_start}, #{pro_end}, #{pro_state})
+	</insert>
+	
+	<select id="selectByProject" resultType="ProjectSpms">
+		select * 
+		from projectSpms 
+		where project_no = #{project_no}
+	</select>
+	
+	<update id="updateProject" parameterType="ProjectSpms">
+		update projectSpms
+		set title = #{title}, pro_content = #{pro_content}, pro_start = #{pro_start}, pro_end = #{pro_end}, pro_state = #{pro_state}
+		where project_no = #{project_no}
+	</update>
+	<delete id="deleteProject" parameterType="ProjectSpms">
+		delete from projectSpms where project_no = #{project_no}
+	
+	</delete>
+</mapper>
